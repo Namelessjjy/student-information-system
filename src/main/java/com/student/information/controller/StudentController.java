@@ -13,7 +13,6 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 
 @RestController()
-@CrossOrigin("*")
 @RequestMapping("/student")
 public class StudentController {
 
