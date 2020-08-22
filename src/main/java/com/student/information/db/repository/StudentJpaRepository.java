@@ -9,6 +9,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Component
 public interface StudentJpaRepository extends JpaRepository<Student, Long>, JpaSpecificationExecutor<Student> {
 
@@ -18,5 +20,6 @@ public interface StudentJpaRepository extends JpaRepository<Student, Long>, JpaS
 
     void deleteByNumber(String number);
 
-
+    @Query("select classNum from Student group by classNum")
+    List<Integer> getAllClassNum();
 }

@@ -11,4 +11,6 @@ public interface CourseScoreService {
     Response editScore(String number, int courseId, int score);
 
     Response getScoreByClass(int classNum);
+
+    Response getScoreWithClass();
 }

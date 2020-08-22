@@ -29,9 +29,12 @@ public class CourseController {
     }
 
     @PostMapping("/editscore")
-    public Response editScore(@RequestBody EditScoreRequest editScoreRequest, HttpServletResponse response) {
-        response.addHeader("Access-Control-Allow-Origin", "*");
-        response.addHeader("Access-Control-Allow-Methods", "POST");
+    public Response editScore(@RequestBody EditScoreRequest editScoreRequest) {
         return courseScoreService.editScore(editScoreRequest.getNumber(), editScoreRequest.getCourseId(), editScoreRequest.getScore());
+    }
+
+    @GetMapping("/getscorewithclass")
+    public Response getScoreWithClass() {
+        return courseScoreService.getScoreWithClass();
     }
 }

@@ -19,9 +19,8 @@ public class LoginController {
     private LoginService loginService;
 
     @PostMapping("/login")
-    public Response login(@RequestBody LoginRequest loginRequest, HttpServletRequest request, HttpServletResponse response) {
-        response.addHeader("Access-Control-Allow-Origin", "*");
-        response.addHeader("Access-Control-Allow-Methods", "POST");
+    public Response login(@RequestBody LoginRequest loginRequest, HttpServletRequest request) {
+
         return loginService.login(loginRequest.getUsername(), loginRequest.getPassword(), request);
     }
 }

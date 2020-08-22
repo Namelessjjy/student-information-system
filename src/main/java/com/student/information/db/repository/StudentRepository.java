@@ -22,6 +22,7 @@ public class StudentRepository {
     @Resource
     private StudentJpaRepository studentJpaRepository;
 
+
     public Response addStudent(Student student) {
         try {
             Student stuInDb = studentJpaRepository.findStudentByNumber(student.getNumber());
@@ -107,5 +108,9 @@ public class StudentRepository {
 
     public Student getStudentByNumber(String number) {
         return studentJpaRepository.findStudentByNumber(number);
+    }
+
+    public List<Integer> getAllClass() {
+        return studentJpaRepository.getAllClassNum();
     }
 }

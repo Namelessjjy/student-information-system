@@ -10,6 +10,7 @@ import com.student.information.vo.StudentInformationVO;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletResponse;
 
 @RestController()
@@ -21,27 +22,24 @@ public class StudentController {
 
     @GetMapping("/getstudents")
     public Response<StudentInformationVO> getStudent(GetStudentRequest getStudentRequest) {
+
         return studentService.getStudents(getStudentRequest);
     }
 
     @PostMapping("/addstudent")
-    public Response addStudent(@RequestBody AddStudentRequest addStudentRequest, HttpServletResponse response) {
-        response.addHeader("Access-Control-Allow-Origin", "*");
-        response.addHeader("Access-Control-Allow-Methods", "POST");
+    public Response addStudent(@RequestBody AddStudentRequest addStudentRequest) {
+
         return studentService.addStudent(addStudentRequest);
     }
 
     @PostMapping("/updatestudent")
-    public Response addStudent(@RequestBody UpdateStudentRequest updateStudentRequest, HttpServletResponse response) {
-        response.addHeader("Access-Control-Allow-Origin", "*");
-        response.addHeader("Access-Control-Allow-Methods", "POST");
+    public Response addStudent(@RequestBody UpdateStudentRequest updateStudentRequest) {
         return studentService.updateStudent(updateStudentRequest);
     }
 
     @DeleteMapping("/deletestudent")
-    public Response deleteStudent(@RequestBody DeleteStudentRequest deleteStudentRequest, HttpServletResponse response) {
-        response.addHeader("Access-Control-Allow-Origin", "*");
-        response.addHeader("Access-Control-Allow-Methods", "DELETE");
+    public Response deleteStudent(@RequestBody DeleteStudentRequest deleteStudentRequest) {
+
         return studentService.deleteStudent(deleteStudentRequest);
     }
 

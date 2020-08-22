@@ -9,6 +9,7 @@ import com.student.information.dto.GetStudentRequest;
 import com.student.information.service.CourseScoreService;
 import com.student.information.util.Response;
 import com.student.information.util.ResponseStatusEnum;
+import com.student.information.vo.ClassStudentsScoreVO;
 import com.student.information.vo.CourseInformationVO;
 import com.student.information.vo.StudentCourseScoreVO;
 import com.student.information.vo.StudentInformationVO;
@@ -111,5 +112,21 @@ public class CourseScoreServiceImpl implements CourseScoreService {
         }
 
         return Response.valueOf(10001, "查询失败");
+    }
+
+    @Override
+    public Response getScoreWithClass() {
+        //获取所有班级
+        List<Integer> classes = studentRepository.getAllClass();
+        List<ClassStudentsScoreVO> classStudentsScoreVOS = new ArrayList<>();
+        //遍历班级进行成绩查询
+        for (Integer classNum: classes) {
+            ClassStudentsScoreVO classStudentsScoreVO = new ClassStudentsScoreVO();
+            classStudentsScoreVO.setClassNum(classNum);
+            List<StudentCourseScoreVO> studentCourseScoreVOS = (List<StudentCourseScoreVO>) getScoreByClass(classNum).getData();
+            classStudentsScoreVO.setStudentCourseScoreVOS(studentCourseScoreVOS);
+            classStudentsScoreVOS.add(classStudentsScoreVO);
+        }
+        return Response.valueOf(10000, "查询成功", classStudentsScoreVOS);
     }
 }
