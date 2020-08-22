@@ -5,6 +5,7 @@ import com.student.information.db.entity.Student;
 import com.student.information.db.repository.CourseRepository;
 import com.student.information.db.repository.ScoreRepository;
 import com.student.information.db.repository.StudentRepository;
+import com.student.information.dto.GetStudentRequest;
 import com.student.information.service.CourseScoreService;
 import com.student.information.util.Response;
 import com.student.information.util.ResponseStatusEnum;
@@ -92,5 +93,23 @@ public class CourseScoreServiceImpl implements CourseScoreService {
         score1.setScore(score);
         scoreRepository.addScore(score1);
         return Response.valueOf(10000, "修改成功");
+    }
+
+    @Override
+    public Response getScoreByClass(int classNum) {
+        List<StudentCourseScoreVO> studentCourseScoreVOs = new ArrayList<>();
+
+        // 如果为空则返回所有学生的成绩信息
+        if (classNum > 0) {
+            GetStudentRequest getStudentRequest = new GetStudentRequest();
+            getStudentRequest.setClassNum(classNum);
+            List<Student> students = studentRepository.getStudentList(getStudentRequest);
+            for (Student student : students) {
+                getCourseScore(studentCourseScoreVOs, student);
+            }
+            return Response.valueOf(10000, "查询成功", studentCourseScoreVOs);
+        }
+
+        return Response.valueOf(10001, "查询失败");
     }
 }

@@ -64,7 +64,7 @@ public class StudentRepository {
                 if (getStudentRequest.getName() != null) {
                     conditions.add(criteriaBuilder.equal(root.get("name"), getStudentRequest.getName()));
                 }
-                if (getStudentRequest.getClassNum() != null) {
+                if (getStudentRequest.getClassNum() > 0) {
                     conditions.add(criteriaBuilder.equal(root.get("classNum"), getStudentRequest.getClassNum()));
                 }
                 if (getStudentRequest.getPhoneNum() != null) {

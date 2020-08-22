@@ -10,8 +10,10 @@ import com.student.information.vo.StudentInformationVO;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
 
 @RestController()
+@CrossOrigin("*")
 @RequestMapping("/student")
 public class StudentController {
 
@@ -24,17 +26,23 @@ public class StudentController {
     }
 
     @PostMapping("/addstudent")
-    public Response addStudent(@RequestBody AddStudentRequest addStudentRequest) {
+    public Response addStudent(@RequestBody AddStudentRequest addStudentRequest, HttpServletResponse response) {
+        response.addHeader("Access-Control-Allow-Origin", "*");
+        response.addHeader("Access-Control-Allow-Methods", "POST");
         return studentService.addStudent(addStudentRequest);
     }
 
     @PostMapping("/updatestudent")
-    public Response addStudent(@RequestBody UpdateStudentRequest updateStudentRequest) {
+    public Response addStudent(@RequestBody UpdateStudentRequest updateStudentRequest, HttpServletResponse response) {
+        response.addHeader("Access-Control-Allow-Origin", "*");
+        response.addHeader("Access-Control-Allow-Methods", "POST");
         return studentService.updateStudent(updateStudentRequest);
     }
 
     @DeleteMapping("/deletestudent")
-    public Response deleteStudent(@RequestBody DeleteStudentRequest deleteStudentRequest) {
+    public Response deleteStudent(@RequestBody DeleteStudentRequest deleteStudentRequest, HttpServletResponse response) {
+        response.addHeader("Access-Control-Allow-Origin", "*");
+        response.addHeader("Access-Control-Allow-Methods", "DELETE");
         return studentService.deleteStudent(deleteStudentRequest);
     }
 

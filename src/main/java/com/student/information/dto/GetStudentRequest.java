@@ -11,7 +11,7 @@ public class GetStudentRequest {
 
     private String sex;
 
-    private String classNum;
+    private int classNum;
 
     private String phoneNum;
 }

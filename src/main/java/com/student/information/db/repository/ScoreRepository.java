@@ -23,4 +23,6 @@ public class ScoreRepository {
     public void addScore(Score newScore) {
         scoreJpaRepository.saveAndFlush(newScore);
     }
+
+
 }

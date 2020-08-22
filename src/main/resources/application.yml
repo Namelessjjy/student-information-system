@@ -1,5 +1,6 @@
 server:
   port: 9090
+  address: 172.17.0.13
 
 spring:
   datasource:

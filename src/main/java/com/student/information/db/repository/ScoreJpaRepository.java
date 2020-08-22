@@ -12,4 +12,6 @@ public interface ScoreJpaRepository extends JpaRepository<Score, Long> {
     List<Score> findAllByStudentNum(String number);
 
     Score findByStudentNumAndCourseId(String string, int courseId);
+
+
 }
